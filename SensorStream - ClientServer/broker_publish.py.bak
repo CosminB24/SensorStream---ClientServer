@@ -1,0 +1,49 @@
+import paho.mqtt.client as paho
+import time
+import random
+import ssl
+
+def random_temp():
+        temp=random.randint(0,99)
+        print(temp)
+        return (temp)
+
+def on_connect(client, userdata, flags, rc):
+    print('Broker Hivemq Connected')
+    
+    
+def on_publish(client, userdata, mid):
+    print("publish : "+str(mid))
+    
+client_id = "spt-client-01"
+client = paho.Client(client_id=client_id, clean_session=True)
+client.username_pw_set('cosminB', 'ze03b05rA')
+client.tls_set(certfile=None, keyfile=None, cert_reqs=ssl.CERT_REQUIRED)
+
+client.on_connect=on_connect
+client.on_publish = on_publish
+
+client.connect('cc015d965352455a97e2a60fe921c2c3.s1.eu.hivemq.cloud', 8883,keepalive=60)
+client.loop_start()
+
+while True:
+    temperature = random_temp()
+    client.publish('sensors/t1', str(temperature), qos=1)
+    temperature = random_temp()
+    client.publish('sensors/t3', str(temperature), qos=1)
+    temperature = random_temp()
+    client.publish('sensors/t4', str(temperature), qos=1)
+    temperature = random_temp()
+    client.publish('sensors/t5', str(temperature), qos=1)
+    temperature = random_temp()
+    client.publish('sensors/t6', str(temperature), qos=1)
+    temperature = random_temp()
+    client.publish('sensors/t7', str(temperature), qos=1)
+    temperature = random_temp()
+    client.publish('sensors/t8', str(temperature), qos=1)
+    temperature = random_temp()
+    client.publish('sensors/t9', str(temperature), qos=1)
+    temperature = random_temp()
+    client.publish('sensors/t10', str(temperature), qos=1)
+    time.sleep(5)
+

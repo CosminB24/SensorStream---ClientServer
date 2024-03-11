@@ -1,0 +1,10 @@
+flsk
+pip install Flask
+broker:
+pip install paho-mqtt
+
+
+cc015d965352455a97e2a60fe921c2c3.s1.eu.hivemq.cloud
+port: 8883
+
+
